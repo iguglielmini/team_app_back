@@ -4,6 +4,8 @@ import {
   Post,
   Body,
   BadRequestException,
+  Delete,
+  Param,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
@@ -34,5 +36,12 @@ export class UsersController {
       }
       throw new BadRequestException('Erro ao registrar o usuário.');
     }
+  }
+
+  // Endpoint para excluir um usuário
+  @Delete(':id')
+  async deleteUser(@Param('id') id: number): Promise<{ message: string }> {
+    await this.usersService.deleteUser(id);
+    return { message: `Usuário com ID ${id} foi excluído com sucesso.` };
   }
 }

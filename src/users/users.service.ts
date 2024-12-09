@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -39,5 +43,30 @@ export class UsersService {
     // Cria e salva o usuário
     const user = this.userRepository.create(userData);
     return this.userRepository.save(user);
+  }
+
+  /**
+   * Edita os dados do usuário
+   * @param userData Dados do usuário
+   * @returns Usuário editado
+   */
+
+  async updateUser(id: number, userData: Partial<User>): Promise<User> {
+    await this.userRepository.update(id, userData);
+    return this.userRepository.findOne({ where: { id } });
+  }
+
+  /**
+   * Exclui os dados do usuário
+   * @param userData Dados do usuário
+   * @returns Usuário Excluir
+   */
+
+  async deleteUser(id: number): Promise<void> {
+    const result = await this.userRepository.delete(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`Usuário com ID ${id} não encontrado.`);
+    }
   }
 }

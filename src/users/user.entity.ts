@@ -6,7 +6,13 @@ import {
   IsNotEmpty,
 } from 'class-validator';
 import { Role } from 'src/enum/role';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -40,4 +46,10 @@ export class User {
   @Column()
   @IsEnum(Role, { message: 'Perfil inválido.' })
   role: Role;
+
+  @CreateDateColumn({ type: 'timestamp' })
+  created_at: Date;
+
+  @UpdateDateColumn({ type: 'timestamp' })
+  updated_at: Date;
 }

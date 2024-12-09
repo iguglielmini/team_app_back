@@ -23,6 +23,15 @@ export class UsersService {
   }
 
   /**
+   * Busca um usuário pelo e-mail
+   * @param email E-mail do usuário
+   * @returns Usuário encontrado ou undefined
+   */
+  async findUserByEmail(email: string): Promise<User | undefined> {
+    return this.userRepository.findOne({ where: { email } });
+  }
+
+  /**
    * Registra um novo usuário
    * @param userData Dados do usuário
    * @returns Usuário criado

@@ -6,13 +6,24 @@ import {
   BadRequestException,
   Delete,
   Param,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  /**
+   * Login
+   */
+  @Get('profile')
+  @UseGuards(JwtAuthGuard)
+  getProfile(): string {
+    return 'Perfil do usuário protegido por JWT';
+  }
 
   /**
    * Lista todos os usuários

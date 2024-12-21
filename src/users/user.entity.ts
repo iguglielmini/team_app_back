@@ -12,7 +12,9 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { Item } from 'src/items/item.entity';
 
 @Entity()
 export class User {
@@ -46,6 +48,9 @@ export class User {
   @Column()
   @IsEnum(Role, { message: 'Perfil inválido.' })
   role: Role;
+
+  @OneToMany(() => Item, (item) => item.user, { cascade: true })
+  items: Item[];
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;

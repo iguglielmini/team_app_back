@@ -8,6 +8,7 @@ import { BrandsModule } from './brands/brands.module';
 import { TypeGunModule } from './type-gun/type-gun.module';
 import { ModelGunController } from './model-gun/model-gun.controller';
 import { ModelGunModule } from './model-gun/model-gun.module';
+import { ItemsModule } from './items/items.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ModelGunModule } from './model-gun/model-gun.module';
     BrandsModule,
     TypeGunModule,
     ModelGunModule,
+    ItemsModule,
   ],
   controllers: [ModelGunController],
 })

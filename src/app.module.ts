@@ -6,6 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { InformativosModule } from './informativos/informativos.module';
 import { BrandsModule } from './brands/brands.module';
 import { TypeGunModule } from './type-gun/type-gun.module';
+import { ModelGunController } from './model-gun/model-gun.controller';
+import { ModelGunModule } from './model-gun/model-gun.module';
 
 @Module({
   imports: [
@@ -25,6 +27,8 @@ import { TypeGunModule } from './type-gun/type-gun.module';
     InformativosModule,
     BrandsModule,
     TypeGunModule,
+    ModelGunModule,
   ],
+  controllers: [ModelGunController],
 })
 export class AppModule {}

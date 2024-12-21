@@ -10,6 +10,7 @@ import { ModelGunController } from './model-gun/model-gun.controller';
 import { ModelGunModule } from './model-gun/model-gun.module';
 import { ItemsModule } from './items/items.module';
 import { ConfigModule } from '@nestjs/config';
+import { MaintenanceModule } from './maintenance/maintenance.module';
 
 @Module({
   imports: [
@@ -19,11 +20,11 @@ import { ConfigModule } from '@nestjs/config';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST, // Ou o IP do servidor, caso esteja remoto
-      port: parseInt(process.env.DB_PORT, 10), // Porta padrão do PostgreSQL
-      username: process.env.DB_USERNAME, // Usuário do banco
-      password: process.env.DB_PASSWORD, // Senha do banco
-      database: process.env.DB_NAME, // Nome do banco
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT, 10),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
     }),
@@ -35,7 +36,8 @@ import { ConfigModule } from '@nestjs/config';
     TypeGunModule,
     ModelGunModule,
     ItemsModule,
+    MaintenanceModule,
   ],
-  controllers: [ModelGunController],
+  // controllers: [ModelGunController],
 })
 export class AppModule {}

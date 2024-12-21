@@ -32,15 +32,16 @@ export class ItemsService {
 
   async create(data: {
     name: string;
-    id_user: number;
+    id_user: string;
     brand: string;
     type: string;
     model: string;
   }) {
     // Verificar se o usuário existe
     const user = await this.userRepository.findOne({
-      where: { id: data.id_user },
+      where: { id: data.id_user }, // UUID é string
     });
+
     if (!user) {
       throw new NotFoundException(
         `Usuário com ID ${data.id_user} não encontrado`,

@@ -29,7 +29,7 @@ export class ItemsController {
     @Body()
     data: {
       name: string;
-      id_user: number; // Relaciona com o usuário
+      id_user: string;
       brand: string;
       type: string;
       model: string;

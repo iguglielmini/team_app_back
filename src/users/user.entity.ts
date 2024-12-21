@@ -18,8 +18,8 @@ import { Item } from 'src/items/item.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   @IsNotEmpty({ message: 'O nome é obrigatório.' })

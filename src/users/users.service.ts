@@ -60,9 +60,18 @@ export class UsersService {
    * @returns Usuário editado
    */
 
-  async updateUser(id: number, userData: Partial<User>): Promise<User> {
+  async updateUser(id: string, userData: Partial<User>): Promise<User> {
+    // Atualiza o usuário
     await this.userRepository.update(id, userData);
-    return this.userRepository.findOne({ where: { id } });
+
+    // Retorna o usuário atualizado
+    const updatedUser = await this.userRepository.findOne({ where: { id } });
+
+    if (!updatedUser) {
+      throw new NotFoundException(`Usuário com ID ${id} não encontrado`);
+    }
+
+    return updatedUser;
   }
 
   /**

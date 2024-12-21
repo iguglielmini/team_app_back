@@ -9,18 +9,23 @@ import { TypeGunModule } from './type-gun/type-gun.module';
 import { ModelGunController } from './model-gun/model-gun.controller';
 import { ModelGunModule } from './model-gun/model-gun.module';
 import { ItemsModule } from './items/items.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost', // Ou o IP do servidor, caso esteja remoto
-      port: 5432, // Porta padrão do PostgreSQL
-      username: 'postgres', // Usuário do banco
-      password: '17a105314a', // Sua senha
-      database: 'airsoftdb', // Nome do banco de dados
-      autoLoadEntities: true, // Carrega automaticamente as entidades
-      synchronize: true, // Atualiza o esquema automaticamente (não usar em produção)
+      host: process.env.DB_HOST, // Ou o IP do servidor, caso esteja remoto
+      port: parseInt(process.env.DB_PORT, 10), // Porta padrão do PostgreSQL
+      username: process.env.DB_USERNAME, // Usuário do banco
+      password: process.env.DB_PASSWORD, // Senha do banco
+      database: process.env.DB_NAME, // Nome do banco
+      autoLoadEntities: true,
+      synchronize: true,
     }),
     UsersModule,
     OperationsModule,

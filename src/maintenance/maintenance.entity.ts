@@ -26,6 +26,9 @@ export class Maintenance {
   @Column({ default: 'pendente' })
   status: string;
 
+  @Column({ type: 'text', nullable: true }) // Campo opcional
+  description?: string;
+
   @Column({ type: 'timestamp', nullable: true })
   accepted_at: Date;
 

@@ -24,6 +24,7 @@ export class MaintenanceController {
       id_user: string;
       id_item: string;
       scheduled_date: Date;
+      description?: string;
     },
   ): Promise<Maintenance> {
     return this.maintenanceService.create(data);
@@ -35,6 +36,12 @@ export class MaintenanceController {
     return this.maintenanceService.findByUser(userId);
   }
 
+  // Listar agendamentos por mecanico
+  @Get('mechanic/:id')
+  async getByMechanic(@Param('id') mechanicId: string) {
+    return this.maintenanceService.getByMechanic(mechanicId);
+  }
+
   // Alterar o status de um agendamento
   @Patch(':id/status')
   async updateStatus(
@@ -42,12 +49,11 @@ export class MaintenanceController {
     @Body()
     body: {
       status: MaintenanceStatus; // Enum para garantir valores válidos
-      userId: string; // Usuário que está alterando o status
-      userRole: string; // Role do usuário que está alterando
+      userId: string; // Apenas o ID do usuário que está alterando o status
     },
   ): Promise<Maintenance> {
-    const { status, userId, userRole } = body;
-    return this.maintenanceService.updateStatus(id, status, userId, userRole);
+    const { status, userId } = body;
+    return this.maintenanceService.updateStatus(id, status, userId);
   }
 
   // Deletar um agendamento

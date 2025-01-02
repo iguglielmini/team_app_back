@@ -11,6 +11,7 @@ import { ModelGunModule } from './model-gun/model-gun.module';
 import { ItemsModule } from './items/items.module';
 import { ConfigModule } from '@nestjs/config';
 import { MaintenanceModule } from './maintenance/maintenance.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { MaintenanceModule } from './maintenance/maintenance.module';
     ModelGunModule,
     ItemsModule,
     MaintenanceModule,
+    CommentModule,
   ],
   // controllers: [ModelGunController],
 })

@@ -14,7 +14,9 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
+
 import { Item } from 'src/items/item.entity';
+import { Comment } from '../comment/comment.entity';
 
 @Entity()
 export class User {
@@ -57,4 +59,7 @@ export class User {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date;
+
+  @OneToMany(() => Comment, (comment) => comment.author)
+  comments: Comment[];
 }

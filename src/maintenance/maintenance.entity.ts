@@ -5,9 +5,11 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { User } from 'src/users/user.entity';
 import { Item } from 'src/items/item.entity';
+import { Comment } from '../comment/comment.entity';
 
 @Entity('maintenances')
 export class Maintenance {
@@ -40,4 +42,7 @@ export class Maintenance {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date;
+
+  @OneToMany(() => Comment, (comment) => comment.author)
+  comments: Comment[];
 }

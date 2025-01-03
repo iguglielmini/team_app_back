@@ -24,6 +24,11 @@ export class ItemsController {
     return this.itemsService.findOne(id);
   }
 
+  @Get('user/:id')
+  async getByUser(@Param('id') userId: string) {
+    return this.itemsService.getByUser(userId);
+  }
+
   @Post()
   async create(
     @Body()

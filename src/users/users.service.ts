@@ -80,7 +80,7 @@ export class UsersService {
    * @returns Usuário Excluir
    */
 
-  async deleteUser(id: number): Promise<void> {
+  async deleteUser(id: string): Promise<void> {
     const result = await this.userRepository.delete(id);
 
     if (result.affected === 0) {

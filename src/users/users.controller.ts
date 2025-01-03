@@ -51,7 +51,7 @@ export class UsersController {
 
   // Endpoint para excluir um usuário
   @Delete(':id')
-  async deleteUser(@Param('id') id: number): Promise<{ message: string }> {
+  async deleteUser(@Param('id') id: string): Promise<{ message: string }> {
     await this.usersService.deleteUser(id);
     return { message: `Usuário com ID ${id} foi excluído com sucesso.` };
   }

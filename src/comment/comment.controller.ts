@@ -6,7 +6,6 @@ import {
   Get,
   Delete,
   Req,
-  ParseUUIDPipe,
   UseGuards,
 } from '@nestjs/common';
 import { CommentService } from './comment.service';

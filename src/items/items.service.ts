@@ -69,4 +69,19 @@ export class ItemsService {
     const item = await this.findOne(id);
     return this.itemRepository.remove(item);
   }
+
+  async getByUser(userId: string): Promise<Item[]> {
+    const items = await this.itemRepository.find({
+      where: { user: { id: userId } },
+      relations: ['user'], // Inclui os dados do usuário, se necessário
+    });
+
+    if (!items.length) {
+      throw new NotFoundException(
+        `Nenhum item encontrado para o usuário com ID ${userId}`,
+      );
+    }
+
+    return items;
+  }
 }

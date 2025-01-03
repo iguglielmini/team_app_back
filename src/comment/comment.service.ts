@@ -64,7 +64,7 @@ export class CommentService {
   async deleteComment(commentId: string, user: User): Promise<void> {
     const comment = await this.commentRepository.findOne({
       where: { id: commentId },
-      relations: ['author'], // Carrega a relação com o autor
+      relations: ['author'],
     });
 
     console.log('Comentário encontrado:', comment);
